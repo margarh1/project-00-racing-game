@@ -1,18 +1,19 @@
 console.log('Sanity Check');
 
-$(document).on('ready', function() {
+$(document).ready(function() {
+  console.log('DOM is ready');
   makeBoard();
 });
 
 function makeRow() {
   for (var idx = 0; idx < 2; idx++) {
-    $('.container').append("<div class='row'>Row</div>");
+    $('.container').append("<div class='row'></div>");
   }
 }
 
 function makeTrack() {
   for (var idx = 0; idx < 2; idx++) {
-    $('.row').append("<div class='col-md-6 track'>This is a track</div>");
+    $('.row').append("<div class='col-md-6 track'></div>");
   }
 };
 

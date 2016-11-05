@@ -2,22 +2,30 @@ body {
   background-color: lightblue;
 }
 
+h1 {
+  text-align: center;
+}
+
 .container {
   border: 1px dotted blue;
   width: 100%;
   margin: 50px 0;
+  padding: 0;
 }
 
 .row {
   border: 1px dotted red;
+  margin: 5px 0;
 }
 
 .track {
   background-color: darkgray;
+  padding: 0;
 }
 
 .grid {
   border: 1px solid green;
   text-align: center;
   padding: 0;
+  height: 50px;
 }
