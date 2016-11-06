@@ -32,7 +32,8 @@ h1 {
 }
 
 .game-piece {
+  border: 1px solid black;
   height: 20px;
   width: 20px;
-  margin: 14px 0 0 14px;
+  margin: 13px auto;
 }

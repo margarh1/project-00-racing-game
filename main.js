@@ -3,7 +3,7 @@ console.log('Sanity Check');
 $(document).ready(function() {
   console.log('DOM is ready');
   createCars();
-  makeBoard(players.length);
+  // makeBoard(players.length);
 
 });
 
@@ -71,17 +71,15 @@ function CarFactory(color) {
   car.color = color;
   car.position = 0;
   car.track = players.length;
-  car.gridPosition = $('.grid').eq(car.position);
-  car.gridText = car.gridPosition.text().toLowerCase();
   return car;
 }
 
 var Car = {
   move: function() {
-    if (this.gridText === 'finish') {
+    this.position++;
+    drawPlayers();
+    if (this.position === 23) {
       winMessage();
-    } else {
-      this.position++;
     }
   }
 }
@@ -91,9 +89,12 @@ function winMessage() {
 }
 
 function drawPlayers() {
-  for (var idx = 0; idx < players.length; idx++) {
-    $('.row:eq(' + idx + ') > .track > .grid').eq(0).append("<div class='game-piece'></div>");
-    $('.game-piece').eq(idx).css('background-color', players[idx].color);
+  $('.grid').empty();
+  for (player of players) {
+    $('.row:eq(' + player.track + ') > .track > .grid').eq(player.position).append("<div class='game-piece'></div>");
+    $('.game-piece').eq(player.track).css('background-color', player.color);
   }
 }
+
+
 
