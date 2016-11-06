@@ -38,8 +38,30 @@ function makeBoard(numRows) {
 }
 
 function createCars() {
-  carColor = prompt('Pick a color:\nRed\nOrange\nYellow\nGreen\nBlue\nPurple');
-  
+  do {
+    carColor = prompt('Pick a color:\nRed\nOrange\nYellow\nGreen\nBlue\nPurple');
+    if (carColor !== null) {
+    carColor = carColor.trim().toLowerCase();
+    switch (carColor) {
+      case 'red':
+        break;
+      case 'orange':
+        break;
+      case 'yellow':
+        break;
+      case 'green':
+        break;
+      case 'blue':
+        break;
+      case 'purple':
+        break;
+      case '':
+        break;
+      }
+      console.log(carColor);
+    }
+  }
+  while ((carColor !== 'red') && (carColor !== 'orange') && (carColor !== 'yellow') && (carColor !== 'green') && (carColor !== 'blue') && (carColor !== 'purple') && (carColor !== null) && (carColor !== ''));
   players.push(CarFactory(carColor));
 }
 
