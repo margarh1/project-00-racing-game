@@ -3,12 +3,14 @@ console.log('Sanity Check');
 $(document).ready(function() {
   console.log('DOM is ready');
 
-  // numPlayers = prompt('How many players will be playing?');
-  // for (var idx = 0; idx < numPlayers; idx++) {
-  //   createCars();
-  // }
+  numPlayers = prompt('How many players will be playing?');
+  for (var idx = 0; idx < numPlayers; idx++) {
+    createCars();
+  }
     
-  // makeBoard(players.length);
+  makeBoard(players.length);
+  drawPlayers();
+  countClicks();
 
 });
 
@@ -28,11 +30,7 @@ function makeTrack(tracks = 2) {
 
 function makeGrid(grids = 12) {
   for (var idx = 0; idx < grids; idx++) {
-    if (idx === 11) {
-      $('.track').append("<div class='col-md-1 grid' value='finish'></div>");
-    } else {
-      $('.track').append("<div class='col-md-1 grid'></div>");
-    }
+    $('.track').append("<div class='col-md-1 grid'></div>");
   }
 };
 
@@ -75,7 +73,8 @@ function CarFactory(color) {
   car.color = color;
   car.position = 0;
   car.track = players.length;
-  car.numClicks = 0;
+  car.clicks = 0;
+  car.wins = 0;
   return car;
 }
 
@@ -84,13 +83,15 @@ var Car = {
     this.position++;
     drawPlayers();
     if (this.position === 23) {
-      winMessage();
+      winMessage(this);
     }
   }
 }
 
-function winMessage() {
-  console.log(this.name + ' won');
+function winMessage(piece) {
+  alert(piece.name + ' won');
+  piece.wins++;
+  resetGame();
 }
 
 function drawPlayers() {
@@ -105,11 +106,11 @@ function countClicks() {
   $(document).on('keyup', function(event) {
     switch (event.key) {
       case 'w':
-        players[0].numClicks++;
+        players[0].clicks++;
         moveCar(players[0]);
         break;
       case 'ArrowUp':
-        players[1].numClicks++;
+        players[1].clicks++;
         moveCar(players[1]);
         break;
     }
@@ -117,9 +118,15 @@ function countClicks() {
 }
 
 function moveCar(player) {
-  console.log('moveCar connected');
-  if ((player.numClicks % 10 === 0) && (player.numClicks > 0)) {
+  if ((player.clicks % 5 === 0) && (player.clicks > 0)) {
     player.move();
+  }
+}
+
+function resetGame() {
+  for (player of players) {
+    player.position = 0;
+    player.clicks = 0;
   }
 }
 
