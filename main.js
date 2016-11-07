@@ -2,7 +2,12 @@ console.log('Sanity Check');
 
 $(document).ready(function() {
   console.log('DOM is ready');
-  createCars();
+
+  // numPlayers = prompt('How many players will be playing?');
+  // for (var idx = 0; idx < numPlayers; idx++) {
+  //   createCars();
+  // }
+    
   // makeBoard(players.length);
 
 });
@@ -58,7 +63,6 @@ function createCars() {
       case '':
         break;
       }
-      console.log(carColor);
     }
   }
   while ((carColor !== 'red') && (carColor !== 'orange') && (carColor !== 'yellow') && (carColor !== 'green') && (carColor !== 'blue') && (carColor !== 'purple') && (carColor !== null) && (carColor !== ''));
@@ -71,6 +75,7 @@ function CarFactory(color) {
   car.color = color;
   car.position = 0;
   car.track = players.length;
+  car.numClicks = 0;
   return car;
 }
 
@@ -96,5 +101,25 @@ function drawPlayers() {
   }
 }
 
+function countClicks() {
+  $(document).on('keyup', function(event) {
+    switch (event.key) {
+      case 'w':
+        players[0].numClicks++;
+        moveCar(players[0]);
+        break;
+      case 'ArrowUp':
+        players[1].numClicks++;
+        moveCar(players[1]);
+        break;
+    }
+  })
+}
 
+function moveCar(player) {
+  console.log('moveCar connected');
+  if ((player.numClicks % 10 === 0) && (player.numClicks > 0)) {
+    player.move();
+  }
+}
 
