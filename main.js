@@ -1,8 +1,4 @@
-console.log('Sanity Check');
-
 $(document).ready(function() {
-  console.log('DOM is ready');
-
   numPlayers = prompt('How many players will be playing?');
   for (var idx = 0; idx < numPlayers; idx++) {
     createCars();
@@ -82,9 +78,20 @@ var Car = {
   move: function() {
     this.position++;
     drawPlayers();
-    if (this.position === 23) {
-      winMessage(this);
+  }
+}
+
+function checkPositions() {
+  var winners = [];
+  for (player of players) {
+    if (player.position === 23) {
+      winners.push(player);
     }
+  }
+  if (winners.length === 1) {
+    winMessage(winners[0]);
+  } else if (winners.length > 1) {
+    alert('This race was a tie.');
   }
 }
 
@@ -92,6 +99,7 @@ function winMessage(piece) {
   alert(piece.name + ' won');
   piece.wins++;
   resetGame();
+  drawPlayers();
 }
 
 function drawPlayers() {
@@ -118,9 +126,10 @@ function countClicks() {
 }
 
 function moveCar(player) {
-  if ((player.clicks % 5 === 0) && (player.clicks > 0)) {
+  if ((player.clicks % 1 === 0) && (player.clicks > 0)) {
     player.move();
   }
+  checkPositions();
 }
 
 function resetGame() {

@@ -7,14 +7,12 @@ h1 {
 }
 
 .container {
-  border: 1px dotted blue;
   width: 100%;
   margin: 50px 0;
   padding: 0;
 }
 
 .row {
-  border: 1px dotted red;
   margin: 5px 0;
 }
 
@@ -25,7 +23,7 @@ h1 {
 }
 
 .grid {
-  border: 1px solid green;
+  border: 1px solid yellow;
   text-align: center;
   padding: 0;
   height: 50px;
@@ -34,6 +32,7 @@ h1 {
 .game-piece {
   border: 1px solid black;
   height: 20px;
-  width: 20px;
+  width: 30px;
   margin: 13px auto;
+  border-radius: 5px;
 }
