@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  numPlayers = prompt('How many players will be playing?');
+  numPlayers = 2 //prompt('How many players will be playing?');
   for (var idx = 0; idx < numPlayers; idx++) {
     createCars();
   }
@@ -9,6 +9,7 @@ $(document).ready(function() {
   countClicks();
 
 });
+
 
 var players = [];
 
